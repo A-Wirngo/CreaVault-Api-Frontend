@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CreaVault — Catalogue de créations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar__mark" aria-hidden="true"></div>
+  <div class="topbar__text">
+    <h1>My Vault</h1>
+    <p>Catalogue de mes créations — 3D, vidéo, design, web, photo</p>
+  </div>
+  <button class="btn btn--brass" id="btn-new-project">+ Nouveau projet</button>
+</header>
+
+<main>
+  <div id="empty-state" class="empty-state" hidden>
+    <p class="empty-state__title">Le coffre est vide.</p>
+    <p class="empty-state__body">Ajoute ton premier projet pour commencer le catalogue.</p>
+  </div>
+
+  <div id="project-grid" class="grid"></div>
+</main>
+
+<!-- Modale d'ajout / modification -->
+<div id="modal-overlay" class="modal-overlay" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal__head">
+      <h2 id="modal-title">Nouveau projet</h2>
+      <button class="modal__close" id="btn-close-modal" aria-label="Fermer">×</button>
+    </div>
+
+    <form id="project-form">
+      <input type="hidden" id="field-id">
+
+      <label>
+        Titre
+        <input type="text" id="field-titre" required maxlength="150" placeholder="Ex. Personnage guerrier">
+      </label>
+
+      <div class="field-row">
+        <label>
+          Type
+          <select id="field-type" required>
+            <option value="3d">3D</option>
+            <option value="design_graphique">Design graphique</option>
+            <option value="montage_video">Montage vidéo</option>
+            <option value="web">Web</option>
+            <option value="photo">Photo</option>
+            <option value="autre">Autre</option>
+          </select>
+        </label>
+
+        <label>
+          Statut
+          <select id="field-statut">
+            <option value="draft">Brouillon</option>
+            <option value="in_progress">En cours</option>
+            <option value="done">Terminé</option>
+          </select>
+        </label>
+      </div>
+
+      <label>
+        Outil utilisé
+        <input type="text" id="field-outil" maxlength="50" placeholder="Ex. Blender, GIMP, Premiere Pro">
+      </label>
+
+      <label>
+        Description
+        <textarea id="field-description" rows="3" placeholder="Quelques mots sur ce projet"></textarea>
+      </label>
+
+      <label>
+        Tags
+        <input type="text" id="field-tags" placeholder="portrait, animation, logo (séparés par une virgule)">
+      </label>
+
+      <label class="checkbox-row">
+        <input type="checkbox" id="field-favori">
+        Marquer comme favori
+      </label>
+
+      <div class="modal__actions">
+        <button type="button" class="btn btn--ghost" id="btn-cancel">Annuler</button>
+        <button type="submit" class="btn btn--brass" id="btn-submit">Enregistrer</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
